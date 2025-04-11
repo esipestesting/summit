@@ -1,0 +1,27 @@
+--- 
+
+#set up inventory file based on survey name
+- name: Set up initial inventory
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    
+    - name: create in memory inventory
+      ansible.builtin.add_host:
+        name: '{{ survey_servername }}'
+        groups: linux
+
+#Normal playbook stuff to run roles
+- name: Start server customization
+  hosts: all
+  tasks:
+    
+    - name: Install Apache
+      ansible.builtin.import_role:
+        name: roles/summit_apache
+      when: survey_apache is search 'Yes'
+
+    - name: Install Postgres
+      ansible.builtin.import_role:
+        name: roles/summit_postgres
+      when: survey_postgres is search 'Yes'

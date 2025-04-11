@@ -1,0 +1,25 @@
+
+#set up inventory file based on survey name
+- name: Set up initial inventory
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Set variable for multiple hosts names
+      ansible.builtin.set_fact: 
+        host_list: "{{ survey_servername | split('/n')}}"
+
+    - name: create in memory inventory
+      ansible.builtin.add_host:
+        name: '{{ item }}'
+        groups: linux
+      loop:
+        - '{{ host_list }}'
+
+#Normal playbook stuff to run roles
+- name: Start server customization
+  hosts: all
+  tasks:
+    
+    - name: Import server customize role
+      ansible.builtin.import_role:
+        name: /roles/summit_customize

@@ -1,0 +1,8 @@
+---
+
+- name: Create local user
+  ansible.builtin.user:
+    name: '{{ survey_newuser }}'
+    comment: '{{ survey_fullname }}'
+    group: Administrators
+    create_home: '{{ survey_homedrive }}'

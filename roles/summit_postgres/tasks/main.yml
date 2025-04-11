@@ -1,0 +1,5 @@
+---
+# tasks file for summit_postgres
+- name: Install postgresql client
+  ansible.builtin.yum:
+    name: postgresql
