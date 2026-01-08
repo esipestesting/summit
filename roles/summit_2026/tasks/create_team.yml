@@ -1,0 +1,15 @@
+---
+
+- name: Create Organization | create_team
+  infra.aap_configuration.controller_organizations:
+    aap_organizations:
+      name: Summit 2026
+      max_hosts: 20
+
+- name: Create Team | create_team
+  infra.aap_configuration.controller_teams:
+    aap_teams:
+    - name: Summit Demo Team
+      organization: Summit 2026
+    - name: Second Demo Team
+      organization: Summit 2026

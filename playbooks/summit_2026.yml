@@ -1,0 +1,9 @@
+---
+
+- name: start configuration as code
+  hosts: localhost
+  tasks:
+
+  - name: Call configuration as code role for Summit 2026
+    ansible.builtin.import_role:
+     name: roles/summit_2026

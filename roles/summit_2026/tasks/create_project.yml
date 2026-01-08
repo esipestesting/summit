@@ -1,0 +1,24 @@
+---
+
+- name: create source credential | create_project
+  infra.aap_configuration.controller_credential_types:
+    controller_credentials:
+    - name: Git User
+      credential_type: Source Control
+      inputs:
+        username: 
+        password:
+
+- name: create projects | create_project
+  infra.aap_configuration.controller_projects:
+    controller_projects:
+    - name: Local Repo
+      organization: default
+      local_path: /data/demo/repo
+    - name: Test Git Repo
+      organization: default
+      scm_type: Git
+      scm_url:
+      scm_branch: master
+      credential: git_user
+      scm_update_on_launch: true

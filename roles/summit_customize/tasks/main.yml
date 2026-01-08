@@ -4,5 +4,5 @@
   ansible.builtin.user:
     name: '{{ survey_newuser }}'
     comment: '{{ survey_fullname }}'
-    group: Administrators
+    group: wheel
     create_home: '{{ survey_homedrive }}'

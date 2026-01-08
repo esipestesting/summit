@@ -3,8 +3,24 @@
 - name: install httpd
   ansible.builtin.yum:
     name: httpd
+  become: yes
 
 - name: copy default homepage
   ansible.builtin.copy:
     src: index.html
     dest: /var/www/html/index.html
+  become: yes
+
+- name: open firewall port
+  ansible.posix.firewalld:
+    service: http
+    state: enabled
+    permanent: true
+    immediate: true
+  become: yes
+
+- name: start httpd service
+  ansible.builtin.service:
+    name: httpd
+    state: started
+  become: yes

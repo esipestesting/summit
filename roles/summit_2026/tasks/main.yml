@@ -1,0 +1,26 @@
+---
+
+- name: set environment | summit_2026
+  ansible.builtin.set_facts:
+    aap_hostname: 
+    aap_validate_certs: false
+    aap_username:
+    aap_password: '{{ keyvault_var }}'
+
+- name: Create Custom Creds | summit_2026
+  ansible.builtin.include_tasks:
+    file: cred_type.yml
+
+- name: Create Organizations & Teams | summit_2026
+  ansible.builtin.include_tasks:
+    file: create_team.yml
+
+- name: Create Projects | summit_2026
+  ansible.builtin.include_tasks:
+    file: create_project.yml
+
+- name: create Inventory | summit_2026
+  ansible.builtin.include_tasks:
+    file: create_inventory.yml
+
+    ###create vault with git cred, aap cred, 

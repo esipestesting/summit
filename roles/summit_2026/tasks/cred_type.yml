@@ -1,0 +1,26 @@
+---
+
+- name: Create Custom Cred | cred_type
+  infra.aap_configuration.controller_credential_types:
+    controller_credential_types:
+      - name: Test Credential
+        description: Demo
+        inputs:
+          fields:
+          - type: string
+            id: test_username
+            label: Username
+          - secret: true
+            type: string
+            id: test_password
+            label: Test Password
+          required:
+          - test_username
+          - test_password
+        injectors:
+          extra_vars:
+            test_password: '{{ test_password }}'
+            test_username: '{{ test_username }}'
+          env:
+            test_password: '{{ test_password }}'
+            test_username: '{{ test_username }}'

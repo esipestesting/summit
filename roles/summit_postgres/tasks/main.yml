@@ -3,3 +3,4 @@
 - name: Install postgresql client
   ansible.builtin.yum:
     name: postgresql
+  become: yes

@@ -1,0 +1,26 @@
+---
+
+- name: create test inventory | create_inventory.yml
+  infra.aap_configuration.controller_inventories:
+    controller_inventories:
+    - name: Summit AAP Inventory
+      organization: Summit 2026
+
+- name: create hosts in inventory | create_inventory.yml
+  infra.aap_configuration.controller_hosts:
+    controller_hosts:
+    - name: server1.test.com
+      inventory: Summit AAP Inventory
+      enabled: true
+    - name: server2.test.com
+      inventory: Summit AAP Inventory
+      enabled: true
+
+
+- name: create host groups | create_inventory.yml
+  infra.aap_configuration.controller_host_groups:
+    controller_groups:
+    - name: test group
+      inventory: Summit AAP Inventory
+      hosts:
+        - server1.test.com
